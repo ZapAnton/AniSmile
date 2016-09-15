@@ -64,13 +64,13 @@ begin
   Sleep(1000);
   ClearWindow();
   
-  mouthCurveArray[0].X := 230;
-  mouthCurveArray[0].Y := 290;
+  mouthCurveArray[0].X := 240;
+  mouthCurveArray[0].Y := 300;
   
-  mouthCurveArray[1].X := 270;
+  mouthCurveArray[1].X := 250;
   mouthCurveArray[1].Y := 320;
   
-  mouthCurveArray[2].X := 330;
+  mouthCurveArray[2].X := 310;
   mouthCurveArray[2].Y := 320; 
     
   mouthCurveArray[3].X := 370;
