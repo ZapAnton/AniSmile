@@ -14,12 +14,16 @@ begin
   Circle(250, 210, 20);
   Circle(350, 210, 20);
   
+  {Рисуем зрачки смайла}
   SetBrushColor(clRed);
-  
   Circle(250, 210, 10);
   Circle(350, 210, 10);
   
   SetBrushColor(clBlack);
+ 
+  {Рисуем брови смайла}
+  Line(250,170,270,190);
+  Line(350,170,330,190);
   
   {Рисуем нос смайла}
   Circle(300, 270, 15);
