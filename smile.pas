@@ -2,9 +2,6 @@ program Smile;
 
 uses graphabc;
 
-var
-  mouthCurveArray: array of Point;
-
 {Процедура для рисования неизменяемых частей смайла - тела, глаз, носа}
 procedure DrawSmileStaticParts();
 begin
@@ -19,14 +16,36 @@ begin
   
   {Рисуем нос смайла}
   Circle(300, 270, 15);
-  
-  {Рисуем рот смайла}
-  SetLength(mouthCurveArray, 4);
 end;
 
 {Процедура для рисования подвижной части смайла - рта}
-procedure DrawAnimatedSmileParts();
+procedure DrawAnimatedSmileParts(mouthCurveArray: array of Point);
 begin
+  {Рисуем рот смайла}
+  Curve(mouthCurveArray);
+end;
+
+{Процедура для рисования всего смайла}
+procedure DrawSmile(mouthCurveArray: array of Point);
+begin
+  {Рисуем неизменяемые части смайла - тело, глаза, нос}
+  DrawSmileStaticParts();
+  
+  {Рисуем подвижную часть смайла - рот}
+  DrawAnimatedSmileParts(mouthCurveArray);
+end;
+
+var
+  mouthCurveArray: array of Point;
+
+begin
+  {Устанавливаем параметры окна программы}
+  SetWindowSize(600, 500);
+  SetWindowTitle('AniSmile');
+  
+  {Устанавливаем координаты для рисования рта}
+  SetLength(mouthCurveArray, 4);
+  
   mouthCurveArray[0].X := 210;
   mouthCurveArray[0].Y := 280;
   
@@ -39,24 +58,42 @@ begin
   mouthCurveArray[3].X := 390;
   mouthCurveArray[3].Y := 280;
   
-  Curve(mouthCurveArray);
-end;
-
-{Процедура для рисования всего смайла}
-procedure DrawSmile();
-begin
-  {Рисуем неизменяемые части смайла - тело, глаза, нос}
-  DrawSmileStaticParts();
+  {Рисуем смайл}
+  DrawSmile(mouthCurveArray);
   
-  {Рисуем подвижную часть смайла - рот}
-  DrawAnimatedSmileParts();
-end;
-
-begin
-  {Устанавливаем параметры окна программы}
-  SetWindowSize(600, 500);
-  SetWindowTitle('AniSmile');
+  Sleep(1000);
+  ClearWindow();
+  
+  mouthCurveArray[0].X := 230;
+  mouthCurveArray[0].Y := 290;
+  
+  mouthCurveArray[1].X := 270;
+  mouthCurveArray[1].Y := 320;
+  
+  mouthCurveArray[2].X := 330;
+  mouthCurveArray[2].Y := 320; 
+    
+  mouthCurveArray[3].X := 370;
+  mouthCurveArray[3].Y := 290;
   
   {Рисуем смайл}
-  DrawSmile();
+  DrawSmile(mouthCurveArray);
+  
+  Sleep(1000);
+  ClearWindow();
+  
+  mouthCurveArray[0].X := 250;
+  mouthCurveArray[0].Y := 320;
+  
+  mouthCurveArray[1].X := 270;
+  mouthCurveArray[1].Y := 320;
+  
+  mouthCurveArray[2].X := 290;
+  mouthCurveArray[2].Y := 320; 
+    
+  mouthCurveArray[3].X := 350;
+  mouthCurveArray[3].Y := 320;
+  
+  {Рисуем смайл}
+  DrawSmile(mouthCurveArray);
 end.
