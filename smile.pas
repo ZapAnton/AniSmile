@@ -14,86 +14,49 @@ begin
   Circle(250, 210, 20);
   Circle(350, 210, 20);
   
+  SetBrushColor(clRed);
+  
+  Circle(250, 210, 10);
+  Circle(350, 210, 10);
+  
+  SetBrushColor(clBlack);
+  
   {Рисуем нос смайла}
   Circle(300, 270, 15);
 end;
 
 {Процедура для рисования подвижной части смайла - рта}
-procedure DrawAnimatedSmileParts(mouthCurveArray: array of Point);
+procedure DrawAnimatedSmileParts(i : integer);
 begin
   {Рисуем рот смайла}
-  Curve(mouthCurveArray);
+  Arc(300, 240, 90 , 0 - i, -180 + i);
 end;
 
 {Процедура для рисования всего смайла}
-procedure DrawSmile(mouthCurveArray: array of Point);
+procedure DrawSmile(i : integer);
 begin
   {Рисуем неизменяемые части смайла - тело, глаза, нос}
   DrawSmileStaticParts();
   
   {Рисуем подвижную часть смайла - рот}
-  DrawAnimatedSmileParts(mouthCurveArray);
+  DrawAnimatedSmileParts(i);
 end;
 
-var
-  mouthCurveArray: array of Point;
+var 
+  i : integer;
 
 begin
   {Устанавливаем параметры окна программы}
   SetWindowSize(600, 500);
   SetWindowTitle('AniSmile');
+  SetPenWidth(4);
   
-  {Устанавливаем координаты для рисования рта}
-  SetLength(mouthCurveArray, 4);
-  
-  mouthCurveArray[0].X := 210;
-  mouthCurveArray[0].Y := 280;
-  
-  mouthCurveArray[1].X := 270;
-  mouthCurveArray[1].Y := 320;
-  
-  mouthCurveArray[2].X := 330;
-  mouthCurveArray[2].Y := 320; 
-    
-  mouthCurveArray[3].X := 390;
-  mouthCurveArray[3].Y := 280;
-  
-  {Рисуем смайл}
-  DrawSmile(mouthCurveArray);
-  
-  Sleep(1000);
-  ClearWindow();
-  
-  mouthCurveArray[0].X := 240;
-  mouthCurveArray[0].Y := 300;
-  
-  mouthCurveArray[1].X := 250;
-  mouthCurveArray[1].Y := 320;
-  
-  mouthCurveArray[2].X := 310;
-  mouthCurveArray[2].Y := 320; 
-    
-  mouthCurveArray[3].X := 370;
-  mouthCurveArray[3].Y := 290;
-  
-  {Рисуем смайл}
-  DrawSmile(mouthCurveArray);
-  
-  Sleep(1000);
-  ClearWindow();
-  
-  mouthCurveArray[0].X := 250;
-  mouthCurveArray[0].Y := 320;
-  
-  mouthCurveArray[1].X := 270;
-  mouthCurveArray[1].Y := 320;
-  
-  mouthCurveArray[2].X := 290;
-  mouthCurveArray[2].Y := 320; 
-    
-  mouthCurveArray[3].X := 350;
-  mouthCurveArray[3].Y := 320;
-  
-  {Рисуем смайл}
-  DrawSmile(mouthCurveArray);
+  while true do begin
+    for i := 0 to 180 do begin
+      ClearWindow();
+      {Рисуем смайл}
+      DrawSmile(i);
+      Sleep(50);
+    end;
+  end;
 end.
