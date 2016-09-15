@@ -5,13 +5,9 @@ uses graphabc;
 var
   mouthCurveArray: array of Point;
 
+{Процедура для рисования неизменяемых частей смайла - тела, глаз, носа}
+procedure DrawSmileStaticParts();
 begin
-  {Устанавливаем параметры окна программы}
-  SetWindowSize(600, 500);
-  SetWindowTitle('AniSmile');
-  
-  {Начинаем рисовать смайл}
-  
   {Рисуем тело смайла}
   SetBrushColor(clYellow);
   Circle(300, 250, 120);
@@ -26,7 +22,11 @@ begin
   
   {Рисуем рот смайла}
   SetLength(mouthCurveArray, 4);
-  
+end;
+
+{Процедура для рисования подвижной части смайла - рта}
+procedure DrawAnimatedSmileParts();
+begin
   mouthCurveArray[0].X := 210;
   mouthCurveArray[0].Y := 280;
   
@@ -40,4 +40,23 @@ begin
   mouthCurveArray[3].Y := 280;
   
   Curve(mouthCurveArray);
+end;
+
+{Процедура для рисования всего смайла}
+procedure DrawSmile();
+begin
+  {Рисуем неизменяемые части смайла - тело, глаза, нос}
+  DrawSmileStaticParts();
+  
+  {Рисуем подвижную часть смайла - рот}
+  DrawAnimatedSmileParts();
+end;
+
+begin
+  {Устанавливаем параметры окна программы}
+  SetWindowSize(600, 500);
+  SetWindowTitle('AniSmile');
+  
+  {Рисуем смайл}
+  DrawSmile();
 end.
